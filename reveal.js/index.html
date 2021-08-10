@@ -1,0 +1,347 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/beige.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<!-- Portada de la presentación -->
+			<section data-transition="concave" id="portada">
+				<!-- Cabecera -->
+				<img src="./img/logo_upa.png" alt="Logotipo UPA"
+					style="width: auto; height: 7.5rem; position: relative; left: -23rem;">
+				<img src="./img/logo_isei.png" alt="Logotipo ISEI"
+					style="width: auto; height: 7.5rem; position: relative; right: -23rem;">
+				<h2>DCL: Data Control Language</h2>
+				<hr />
+				<!-- Datos generales -->
+				<p style="text-align: left; font-size: 2rem;">Nombre: Rogelio Trejo Estrada UP190830</p>
+				<p style="text-align: left; font-size: 2rem;">Programa Academico: Ingenieria en Sistemas Estrategicos de
+					la Información</p>
+				<p style="text-align: left; font-size: 2rem;">Profesor: Juan Carlos Herrera Hernández</p>
+				<p style="text-align: left; font-size: 2rem;">Asignatura Administración de Base de Datos</p>
+			</section>
+			<!-- Que es? -->
+			<section>
+				<section>
+					<h3 style="text-align: left;">¿Qué es el DCL?</h3>
+					<hr />
+					<div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr;">
+						<p style="text-align: left; grid-column: 1/5;">Un Lenguaje de Control de Datos (DCL
+							por sus siglas en inglés: Data Control Language) es un lenguaje proporcionado por el sistema
+							de gestión de base de datos que incluye una serie de comandos SQL que permiten al
+							administrador controlar el acceso a los datos contenidos en la base de datos.</p>
+						<img style="grid-column: 5/7; position: relative; margin: auto;" width="525"
+							src="data:image/png;base64,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"
+							alt="Que es DCL">
+					</div>
+				</section>
+				<section>
+					<h3 style="text-align: left;">Comandos en DCL</h3>
+					<hr />
+					<div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr;">
+						<img style="grid-column: 1/3; position: relative; margin: auto;"
+							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi0cKGoQL27IgWGUtV5nVKGptkjpy6x8bGQ39fnfTIGNYzu4VxYVudlDaRBAWDhQSE-A4&usqp=CAU"
+							alt="Cosas que realiza DCL">
+						<div style="grid-column: 3/7;">
+							<p style="text-align: left;">Algunos ejemplos de comandos incluidos en el DCL son los
+								siguientes:</p>
+							<ul>
+								<li><strong>GRANT</strong>: Permite dar permisos a uno o varios usuarios o roles para
+									realizar tareas determinadas.</li>
+								<li><strong>REVOKE</strong>: Permite eliminar permisos que previamente se han concedido
+									con GRANT.</li>
+								<li><strong>DENY</strong>: Prohíbe ciertos permisos a los usuarios.</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 style="text-align: left;">Comandos en DCL</h3>
+					<hr />
+					<div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr;">
+						<div style="grid-column: 1/4;">
+							<p style="text-align: left;">Las tareas sobre las que se pueden conceder o denegar permisos
+								son las siguientes:</p>
+							<ul>
+								<li>CONNECT</li>
+								<li>SELECT</li>
+								<li>INSERT</li>
+								<li>UPGRADE</li>
+								<li>DELETE</li>
+								<li>USAGE</li>
+							</ul>
+						</div>
+						<div style="grid-column: 4/7;">
+							<pre style="position: relative; top: 50%; transform: translateY(-50%);"><code class="SQL">
+	-- GRANT
+	GRANT SELECT, INSERT, UPDATE, DELETE ON Employees to almir
+
+	-- REVOKE
+	REVOKE INSERT ON Employees to almir
+
+	-- DENY
+	DENY UPDATE ON Employees to almir
+							</code></pre>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3 style="text-align: left;">¿Qué es un rol en MySQL?</h3>
+					<hr />
+					<div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr;">
+						<img style="grid-column: 1/4; position: relative; margin: auto;"
+							src="https://www.mysqltutorial.org/wp-content/uploads/2019/09/MySQL-Role.png" alt="Roles">
+						<div style="grid-column: 4/7;">
+							<p style="text-align: left; font-size: 2rem;">Un Rol actúa como plantillas que facilitan la
+								asignación de permisos a un usuario de una base de datos. Se soportan los siguientes
+								roles de usuario de base de datos: Lectura y escritura (usado de forma predeterminada),
+								Solo lectura y Sólo escritura. Cada rol presenta un conjunto de privilegios
+								predeterminados que se conceden al usuario de la base de datos al que se le asigne. Si
+								lo desea, puede editar los conjuntos de privilegios correspondientes a los distintos
+								roles.</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 style="text-align: left;">Roles en MySQL</h3>
+					<hr />
+					<table>
+						<thead>
+							<tr>
+								<th>Privilegio</th>
+								<th>Lectura y escritura</th>
+								<th>Sólo lectura</th>
+								<th>Sólo escritura</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Seleccionar</td>
+								<td>+</td>
+								<td>+</td>
+								<td>-</td>
+							</tr>
+							<tr>
+								<td>Insertar</td>
+								<td>+</td>
+								<td>-</td>
+								<td>+</td>
+							</tr>
+							<tr>
+								<td>Actualizar</td>
+								<td>+</td>
+								<td>-</td>
+								<td>+</td>
+							</tr>
+							<tr>
+								<td>Eliminar</td>
+								<td>+</td>
+								<td>-</td>
+								<td>+</td>
+							</tr>
+							<tr>
+								<td>Crear</td>
+								<td>+</td>
+								<td>-</td>
+								<td>+</td>
+							</tr>
+							<tr>
+								<td>Drop</td>
+								<td>+</td>
+								<td>-</td>
+								<td>+</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+				<section>
+					<table>
+						<thead>
+							<tr>
+								<th>Privilegio</th>
+								<th>Lectura y escritura</th>
+								<th>Sólo lectura</th>
+								<th>Sólo escritura</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Alter</td>
+								<td>+</td>
+								<td>-</td>
+								<td>+</td>
+							</tr>
+							<tr>
+								<td>Index</td>
+								<td>+</td>
+								<td>-</td>
+								<td>+</td>
+							</tr>
+							<tr>
+								<td>Create Temporary Tables</td>
+								<td>+</td>
+								<td>-</td>
+								<td>+</td>
+							</tr>
+							<tr>
+								<td>Lock Tables/td>
+								<td>+</td>
+								<td>-</td>
+								<td>+</td>
+							</tr>
+							<tr>
+								<td>Create view</td>
+								<td>+</td>
+								<td>-</td>
+								<td>+</td>
+							</tr>
+							<tr>
+								<td>Show view</td>
+								<td>+</td>
+								<td>+</td>
+								<td>-</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+			</section>
+			<section>
+				<h3>Permisos Globales</h3>
+				<hr />
+				<div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr;">
+					<div style="grid-column: 1/4;">
+						<p style="text-align: left;">Los permisos globales se aplican a todas las
+							bases de datos de un servidor dado. Estos privilegios son almacenados en la
+							tabla “mysql.user"</p>
+					</div>
+					<div style="grid-column: 4/7;">
+						<h4>Elemplo</h4>
+						<pre style="position: relative; top: 50%; transform: translateY(-50%);"><code class="SQL">
+-- Asignar todos los pribilegios
+GRANT all privileges on *.* to user1@'localhost' identified by 'user1' with grant option;
+
+-- Remover todos los pribilegios
+REVOKE all privileges on *.* FROM user1@'localhost' identified by 'user1';
+						</code></pre>
+					</div>
+				</div>
+			</section>
+			<section>
+				<section>
+					<h3>Permisos Especificos</h3>
+					<hr />
+					<div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr;">
+						<img style="grid-column: 1/4;"
+							src="https://www.ticportal.es/wp-content/uploads/funcion-sql-bbdd.jpg"
+							alt="Permisos Especificos">
+						<div style="grid-column: 4/7; display: flex;">
+							<p style="text-align: left; margin: auto;">Existen 3 niveles para especificar permisos,
+								estos pueden ser a nivel de base de datos,
+								a nivel de tabla o a nivel de columna. Esto dependera de lo que se desea que el usuario
+								tenga acceso. </p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>Permisos de Base de Datos</h3>
+					<hr />
+					<div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr;">
+						<div style="grid-column: 1/4;">
+							<p style="text-align: left;">Los permisos de base de datos se aplican a todos
+								los objetos en una base de datos dada. Estos permisos se almacenan en las tablas
+								“mysql.db”</p>
+						</div>
+						<div style="grid-column: 4/7;">
+							<h4>Elemplo</h4>
+							<pre style="position: relative; top: 50%; transform: translateY(-50%);"><code class="SQL">
+-- Asignar todos los pribilegios a una sola base de datos
+GRANT all privileges on cdcol.* to user1@'localhost' identified by 'user1' with grant option;
+
+-- Remover todos los pribilegios de una solo base de datos
+REVOKE all privileges on cdcol.* FROM user1@'localhost' identified by 'user1';
+							</code></pre>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>Permisos de Tabla</h3>
+					<hr />
+					<div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr;">
+						<div style="grid-column: 1/4;">
+							<h4>Elemplo</h4>
+							<pre style="position: relative; top: 50%; transform: translateY(-50%);"><code class="SQL">
+-- Asignar todos los pribilegios a una sola tabla de una base de datos
+GRANT all privileges on cdcol.cds to user1@'localhost' identified by 'user1' with grant option;
+		
+-- Remover todos los pribilegios de una solo tabla
+REVOKE all privileges on cdcol.cds FROM user1@'localhost' identified by 'user1';
+								</code></pre>
+						</div>
+						<div style="grid-column: 4/7;">
+							<p style="text-align: left;">Los permisos de tabla se aplican a todas las
+								columnas en una tabla dada. Estos permisos se almacenan en la tabla
+								"mysql.tables_priv"</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>Permisos de Tabla</h3>
+					<hr />
+					<div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr;">
+						<div style="grid-column: 1/4;">
+							<p style="text-align: left;">Los permisos de tabla se aplican a todas las
+								columnas en una tabla dada. Estos permisos se almacenan en la tabla
+								"mysql.tables_priv"</p>
+						</div>
+						<div style="grid-column: 4/7;">
+							<h4>Elemplo</h4>
+							<pre style="position: relative; top: 50%; transform: translateY(-50%);"><code class="SQL">
+-- Asignar todos los pribilegios a ciertas columnas de una tabla
+GRANT SELECT(titel,interpret) on cdcol.cds to user1@'localhost' identified by 'user1' with grant option;
+		
+-- Remover todos los pribilegios de las columnas de la tabla
+REVOKE SELECT(titel,interpret) on cdcol.cds FROM user1@'localhost' identified by 'user1';
+							</code></pre>
+						</div>
+					</div>
+				</section>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			width: 1200,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
